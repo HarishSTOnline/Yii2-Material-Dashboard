@@ -5,117 +5,121 @@
 /* @var $model \common\models\LoginForm */
 
 use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
+use yii\bootstrap4\ActiveForm;
+use yii\helpers\Url;
 
 $this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<!-- <div class="site-login">
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>Please fill out the following fields to login:</p>
+<div class="container site-login">
+  <div class="row">
 
-    <div class="row">
-        <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
+    <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto d-flex align-items-center justify-content-center" style="height: 100vh;">
 
-                <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+      <?php $form = ActiveForm::begin([
+        'id' => 'login-form',
+        'method' => 'post',
+      ]); ?>
 
-                <?= $form->field($model, 'password')->passwordInput() ?>
+      <div class="card card-login card-hidden" style="width: 23rem;">
 
-                <?= $form->field($model, 'rememberMe')->checkbox() ?>
-
-                <div class="form-group">
-                    <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-                </div>
-
-            <?php ActiveForm::end(); ?>
+        <!-- Card Header -->
+        <div class="card-header card-header-rose text-center">
+          <h3 class="card-title text-center text-bold">
+            <strong>LOGIN</strong>
+          </h3>
         </div>
-    </div>
-</div> -->
+        <!-- Card Header End -->
 
-<div class="container">
-    <div class="row">
-      <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
-        <?php $form = ActiveForm::begin( [
-	        'id'     => 'login-form',
-	        'method' => 'post',
-        ] ); ?>
-          <div class="card card-login card-hidden">
-            <div class="card-header card-header-rose text-center">
-              <h4 class="card-title text-center">Login</h4>
-                <div class="social-line">
-                    <a href="#pablo" class="btn btn-just-icon btn-link btn-white">
-                      <i class="fa fa-facebook-square"></i>
-                    </a>
-                    <a href="#pablo" class="btn btn-just-icon btn-link btn-white">
-                      <i class="fa fa-twitter"></i>
-                    </a>
-                    <a href="#pablo" class="btn btn-just-icon btn-link btn-white">
-                      <i class="fa fa-google-plus"></i>
-                    </a>
-                </div>
-            </div>
-              <div class="card-body">
-                  <p class="card-description text-center">Or Sign in with  <strong>hello@coderseden.com</strong>  and the password <strong>admin123</strong> </p>
-                <div class="form-group has-default">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">
-                      <i class="material-icons">mail</i>
-                    </span>
-                  </div>
-	                <?= $form->field( $model, 'username', [
-		                'template' => '{input}',
-		                'options'  => [
-			                'class' => 'form-group has-feedback',
-			                'tag'   => false,
-		                ]
-	                ] )->textInput( [ 'placeholder' => 'Email' ] )->label( false ); ?>
-                </div>
+        <!-- Card Body -->
+        <div class="card-body">
+          
+          <p class="card-description text-center">
+            Sign in to the Admin Panel of <strong class="text-primary"><?= Yii::$app->params['applicationName'] ?></strong>
+          </p>
+
+          <div class="form-group has-default">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="material-icons">account_box</i>
+                </span>
               </div>
-              <div class="form-group has-default">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">
-                      <i class="material-icons">lock_outline</i>
-                    </span>
-                  </div>
-	                <?= $form->field( $model, 'password', [
-		                'template' => '{input}',
-		                'options'  => [
-			                'class' => 'form-group has-feedback',
-			                'tag'   => false,
-		                ]
-	                ] )->passwordInput( [ 'placeholder' => 'Password' ] )->label( false ); ?>
-                </div>
-              </div>
-                <div class="form-check">
-                      <label class="form-check-label">
-                <?= $form->field( $model, 'rememberMe', [
-	                'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
-                ] )->checkbox()->label(); ?>
-                      </label>
-                </div>
-                <div class="form-group">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">
-                      <i class="material-icons"></i>
-                    </span>
-                  </div>
-	                <?= $form->errorSummary( $model ) ?>
-                </div>
-              </div>
-            </div>
-              <div class="card-footer justify-content-center">
-                <a href="<?= \yii\helpers\Url::to(['/site/forgot']);?>"><?= \Yii::t('app', 'I forgot my password');?></a>
-            </div>
-            <div class="card-footer justify-content-center">
-              <button type="submit" class="btn btn-primary btn-round">Lets Go</button>
+
+              <?= $form->field($model, 'username', [
+                    'template' => '{input}',
+                    'options' => [
+                      'class' => 'form-group has-feedback',
+                      'tag' => false,
+                    ]
+                  ])->textInput([
+                    'placeholder' => 'Username',
+                    'autofocus' => true,
+                  ])->label(false)
+              ?>
+              
             </div>
           </div>
-	      <?php ActiveForm::end(); ?>
+
+          <div class="form-group has-default">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="material-icons">lock</i>
+                </span>
+              </div>
+
+              <?= $form->field($model, 'password', [
+                    'template' => '{input}',
+                    'options'  => [
+                      'class' => 'form-group has-feedback',
+                      'tag'   => false,
+                    ],
+                  ])->passwordInput([
+                    'placeholder' => 'Password'
+                  ])->label(false);
+              ?>
+
+            </div>
+          </div>
+
+          <div class="form-check">
+            <label class="form-check-label">
+              
+              <?= $form->field($model, 'rememberMe', [
+                    'template' => '<div class=\"col-lg-offset-1 col-lg-3\">{input}</div>',
+                  ])->checkbox()->label();
+              ?>
+
+            </label>
+          </div>
+
+        </div>
+        <!-- Card Body End -->
+        
+        <!-- Card Footer -->
+        <div class="card-footer justify-content-center">
+          <strong>
+            <?= Html::a( Yii::t('app', 'I forgot my password'), Url::to(['site/forgot'])) ?>
+          </strong>
+        </div>
+        <!-- Card Footer End -->
+
+        <!-- Card Footer -->
+        <div class="card-footer justify-content-center">
+          <?= Html::submitButton('Sign In', ['class' => 'btn btn-primary btn-round', 'name' => 'login-button']) ?>
+        </div>
+        <!-- Card Footer -->
+
       </div>
+      
+      <!-- Form Error Prints in an Alert -->
+      <?= $form->errorSummary($model) ?>
+
+      <?php ActiveForm::end(); ?>
+
     </div>
+
+  </div>
 </div>
