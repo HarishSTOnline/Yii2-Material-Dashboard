@@ -22,12 +22,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'method' => 'post',
       ]); ?>
 
+      <!-- Card -->
       <div class="card card-login card-hidden" style="width: 23rem;">
 
         <!-- Card Header -->
         <div class="card-header card-header-rose text-center">
           <h3 class="card-title text-center text-bold">
-            <strong>LOGIN</strong>
+            <strong><?= Html::encode($this->title) ?></strong>
           </h3>
         </div>
         <!-- Card Header End -->
@@ -36,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="card-body">
           
           <p class="card-description text-center">
-            Sign in to the Admin Panel of <strong class="text-primary"><?= Yii::$app->params['applicationName'] ?></strong>
+            Sign in to the Admin Panel of <strong class="text-primary"><?= Yii::$app->name ?></strong>
           </p>
 
           <div class="form-group has-default">
@@ -113,6 +114,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <!-- Card Footer -->
 
       </div>
+      <!-- Card End -->
       
       <!-- Form Error Prints in an Alert -->
       <?= $form->errorSummary($model) ?>
