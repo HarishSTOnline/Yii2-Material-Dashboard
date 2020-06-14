@@ -31,12 +31,41 @@ AppAsset::register($this);
 
         <?= $this->render('_navbar') ?>
 
-        <?= $this->render('_notifications') ?>
-
         <?= $this->render('_breadcrumbs') ?>
 
         <div class="content">
+            
+            <!-- Alerts -->
+            <?php if (Yii::$app->session->hasFlash('info')): ?>
+                <div class="alert alert-info">
+                    <?= Yii::$app->session->getFlash('info') ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <?php endif; ?>
+            
+            <?php if (Yii::$app->session->hasFlash('error')): ?>
+                <div class="alert alert-danger">
+                    <?= Yii::$app->session->getFlash('error') ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <?php endif; ?>
+
+            <?php if (Yii::$app->session->hasFlash('success')): ?>
+                <div class="alert alert-success">
+                    <?= Yii::$app->session->getFlash('success') ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <?php endif; ?>
+            <!-- Alerts End-->
+
             <?= $content ?>
+
         </div>
 
         <?= $this->render('_mainfooter') ?>
