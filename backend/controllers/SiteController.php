@@ -27,7 +27,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout', 'index', 'dashboard'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -62,6 +62,17 @@ class SiteController extends Controller
     public function actionIndex()
     {
         return $this->render('index');
+    }
+
+    /**
+     * Displays Dashboard
+     *
+     * @return string
+     */
+    public function actionDashboard()
+    {
+        $this->view->title = 'Dashboard';
+        return $this->render('dashboard');
     }
 
     /**
@@ -125,4 +136,5 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+
 }
