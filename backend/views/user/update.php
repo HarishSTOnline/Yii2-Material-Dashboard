@@ -12,9 +12,9 @@ $this->title = $title;
                 <i class="material-icons">account_box</i>
             </div>
             <h4 class="card-title">
-                <?= $model->username ?>
+                <?= $user->username ?>
                 <div class="pull-right">
-                    <?= Html::a(Html::tag('b', 'keyboard_arrow_left', ['class' => 'material-icons']), ['index'], [
+                    <?= Html::a(Html::tag('b', 'keyboard_arrow_left', ['class' => 'material-icons']), ['/user/profile'], [
                         'class' => 'btn btn-xs btn-success btn-round btn-fab',
                         'rel' => "tooltip",
                         'data' => [
@@ -22,7 +22,7 @@ $this->title = $title;
                             'original-title' => 'Back'
                         ],
                     ]) ?>
-                    <?= Html::a(Html::tag('b', 'create', ['class' => 'material-icons']), ['update', 'id' => $model->id], [
+                    <?= Html::a(Html::tag('b', 'create', ['class' => 'material-icons']), ['update', 'id' => $user->id], [
                         'class' => 'btn btn-xs btn-success btn-round btn-fab',
                         'rel' => "tooltip",
                         'data' => [
@@ -30,7 +30,7 @@ $this->title = $title;
                             'original-title' => 'Edit User'
                         ],
                     ]) ?>
-                    <?= Html::a(Html::tag('b', 'delete', ['class' => 'material-icons']), ['delete', 'id' => $model->id], [
+                    <!-- <?= Html::a(Html::tag('b', 'delete', ['class' => 'material-icons']), ['delete', 'id' => $user->id], [
                         'class' => 'btn btn-xs btn-danger btn-round btn-fab',
                         'rel' => "tooltip",
                         'data' => [
@@ -39,13 +39,13 @@ $this->title = $title;
                             'placement' => 'bottom',
                             'original-title' => 'Delete User'
                         ],
-                    ]) ?>
+                    ]) ?> -->
                 </div>
             </h4>
         </div>
         <div class="card-body">
             <?= DetailView::widget([
-                'model' => $model,
+                'model' => $user,
                 'attributes' => [
                     'id',
                     'username',
@@ -53,15 +53,15 @@ $this->title = $title;
                     // 'last_name',
                     // [
                     //     'label' => 'Group Name',
-                    //     'value' => ($model->group_id) ? Html::a($model->group->name, ['/admin/groups/view', 'id' => $model->group_id]) : \Yii::t('app', 'No Group'),
+                    //     'value' => ($user->group_id) ? Html::a($user->group->name, ['/admin/groups/view', 'id' => $user->group_id]) : \Yii::t('app', 'No Group'),
                     //     'format' => 'raw',
                     // ],
                     'email:email',
                     [
                         'label' => 'Status',
                         'attribute' => 'status',
-                        'value'     => function ($model) {
-                            return \Yii::t('app', ucfirst(\yii\helpers\Html::encode($model->status)));
+                        'value'     => function ($user) {
+                            return \Yii::t('app', ucfirst(\yii\helpers\Html::encode($user->status)));
                         },
                     ],
                     'created_at',

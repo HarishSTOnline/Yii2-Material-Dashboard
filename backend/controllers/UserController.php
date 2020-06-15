@@ -21,7 +21,7 @@ class UserController extends Controller {
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['profile'],
+                        'actions' => ['profile', 'update'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -44,6 +44,22 @@ class UserController extends Controller {
         return $this->render('profile', [
             'title' => $title,
             'user' => $user,
+        ]);
+    }
+
+    /**
+     * User Profile Update
+     */
+    public function actionUpdate($id) {
+        
+        $user = $this->findModel($id);
+        $title = 'Edit Profile | ' . $user->username;
+
+        Yii::$app->session->setFlash('info', '501 - Not yet implemented!');
+        
+        return $this->render('update', [
+            'title' => $title,
+            'user' => $user
         ]);
     }
 
