@@ -20,7 +20,31 @@ use yii\helpers\Url;
                     <p>Dashboard</p>
                 </a>
             </li>
-            <li class="nav-item ">
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#yii2Example" aria-expanded="false">
+                <i class="material-icons">account_box</i>
+                <p>Users
+                    <b class="caret"></b>
+                </p>
+                </a>
+                <div class="collapse" id="yii2Example">
+                <ul class="nav">
+                    <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <span class="sidebar-mini"> UM </span>
+                        <span class="sidebar-normal"> User Management </span>
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <span class="sidebar-mini"> UP </span>
+                        <span class="sidebar-normal"> User Profile </span>
+                    </a>
+                    </li>
+                </ul>
+                </div>
+          </li>
+            <!-- <li class="nav-item ">
                 <a class="nav-link" href="./user.html">
                     <i class="material-icons">person</i>
                     <p>User Profile</p>
@@ -61,7 +85,7 @@ use yii\helpers\Url;
                     <i class="material-icons">language</i>
                     <p>RTL Support</p>
                 </a>
-            </li>
+            </li> -->
         </ul>
     </div>
 
