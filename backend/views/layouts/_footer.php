@@ -11,16 +11,6 @@
                         HarishST
                     </a>
                 </li>
-                <li>
-                    <a href="#">
-                        Terms
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        Blog
-                    </a>
-                </li>
             </ul>
         </nav>
         <div class="copyright float-right">
