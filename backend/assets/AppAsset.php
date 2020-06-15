@@ -39,6 +39,7 @@ class AppAsset extends AssetBundle
         'js/plugins/chartist.min.js', // Chartist JS
         'js/plugins/bootstrap-notify.js', // Notifications Plugin
         'js/material-dashboard.js?v=2.1.2', // Control Center for Material Dashboard: parallax effects, scripts for the example pages etc
+        'js/plugin.custom.js',
     ];
     public $depends = [
         // 'yii\web\YiiAsset',
