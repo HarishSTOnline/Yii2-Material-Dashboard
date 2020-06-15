@@ -39,16 +39,16 @@
                     <img src="<?= Yii::getAlias('@web/img/sidebar-4.jpg'); ?>" alt="">
                 </a>
             </li>
-            <li class="button-container">
+            <!-- <li class="button-container">
                 <a href="https://www.creative-tim.com/product/material-dashboard" target="_blank" class="btn btn-primary btn-block">Free Download</a>
-            </li>
+            </li> -->
             <!-- <li class="header-title">Want more components?</li>
             <li class="button-container">
                 <a href="https://www.creative-tim.com/product/material-dashboard-pro" target="_blank" class="btn btn-warning btn-block">
                   Get the pro version
                 </a>
             </li> -->
-            <li class="button-container">
+            <!-- <li class="button-container">
                 <a href="https://demos.creative-tim.com/material-dashboard/docs/2.1/getting-started/introduction.html" target="_blank" class="btn btn-default btn-block">
                     View Documentation
                 </a>
@@ -62,7 +62,7 @@
                 <button id="facebook" class="btn btn-round btn-facebook"><i class="fa fa-facebook-f"></i> &middot; 50</button>
                 <br>
                 <br>
-            </li>
+            </li> -->
         </ul>
     </div>
 </div>
