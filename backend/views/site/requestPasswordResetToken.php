@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ?>
 
                 <!-- Card -->
-                <div class="card card-login card-hidden" style="width: 23rem;">
+                <div class="card card-login card-hidden" style="width: 21rem;">
 
                     <!-- Card Header -->
                     <div class="card-header card-header-rose text-center">

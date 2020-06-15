@@ -78,7 +78,7 @@ use yii\helpers\Url;
 
                             <div class="dropdown-divider"></div>
 
-                            <form class="dropdown-item" action="<?= Url::to('/site/logout') ?>" method="POST">
+                            <form action="<?= Url::to('/site/logout') ?>" method="POST" style="padding-right: 1.5rem;padding-left: 1.5rem;">
                                 <input type="hidden" name="_csrf-backend" value="<?= Yii::$app->request->getCsrfToken()?>">
                                 <?= Html::submitButton('Logout', [
                                     'class' => 'btn btn-primary'
