@@ -15,6 +15,7 @@ class AppAsset extends AssetBundle
         // 'css/site.css',
         '//fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons',
         '//maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css',
+        // 'font-awesome/css/all.css',
         'css/material-dashboard.css',
     ];
     public $js = [
@@ -38,6 +39,7 @@ class AppAsset extends AssetBundle
         'js/plugins/arrive.min.js', // Library for adding dinamically elements
         'js/plugins/chartist.min.js', // Chartist JS
         'js/plugins/bootstrap-notify.js', // Notifications Plugin
+        // 'font-awesome/js/all.js', // Font-Awesome JS
         'js/material-dashboard.js?v=2.1.2', // Control Center for Material Dashboard: parallax effects, scripts for the example pages etc
         'js/plugin.custom.js',
     ];

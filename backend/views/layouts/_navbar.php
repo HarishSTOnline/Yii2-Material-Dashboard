@@ -18,7 +18,7 @@ use yii\helpers\Url;
             <span class="navbar-toggler-icon icon-bar"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end">
-            
+
             <form class="navbar-form">
                 <div class="input-group no-border">
                     <input type="text" value="" class="form-control" placeholder="Search...">
@@ -30,7 +30,7 @@ use yii\helpers\Url;
             </form>
 
             <ul class="navbar-nav">
-                
+
                 <!-- <li class="nav-item">
                     <a class="nav-link" href="javascript:;">
                         <i class="material-icons">dashboard</i>
@@ -59,13 +59,21 @@ use yii\helpers\Url;
 
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="material-icons">person</i>
+
+                        <?php if (Yii::$app->user->isGuest): ?>
+                            <i class="material-icons">person</i>
+                        <?php else : ?>
+                            <i><img style="width:25px" src="<?= Yii::getAlias('@web/img/faces/avatar.jpg'); ?>"></i>
+                        <?php endif; ?>
+
                         <p class="d-lg-none d-md-block">
                             Account
                         </p>
+
                     </a>
+
                     <?php if (Yii::$app->user->isGuest): ?>
-                        
+
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
                             <a class="dropdown-item" href="<?= Url::to('/site/login') ?>">Log in</a>
                         </div>
@@ -79,7 +87,7 @@ use yii\helpers\Url;
                             <div class="dropdown-divider"></div>
 
                             <form action="<?= Url::to('/site/logout') ?>" method="POST" style="padding-right: 1.5rem;padding-left: 1.5rem;">
-                                <input type="hidden" name="_csrf-backend" value="<?= Yii::$app->request->getCsrfToken()?>">
+                                <input type="hidden" name="_csrf-backend" value="<?= Yii::$app->request->getCsrfToken() ?>">
                                 <?= Html::submitButton('Logout', [
                                     'class' => 'btn btn-primary'
                                 ]) ?>
@@ -88,7 +96,6 @@ use yii\helpers\Url;
 
                     <?php endif; ?>
 
-                    
                 </li>
 
             </ul>

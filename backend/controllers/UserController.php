@@ -4,21 +4,18 @@ namespace backend\controllers;
 use common\models\User;
 use Yii;
 use yii\filters\AccessControl;
-use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
 /**
- * User controller
+ * User Management Controller
  */
-class UserController extends Controller
-{
+class UserController extends Controller {
 
     /**
      * {@inheritdoc}
      */
-    public function behaviors()
-    {
+    public function behaviors() {
         return [
             'access' => [
                 'class' => AccessControl::className(),
@@ -30,12 +27,6 @@ class UserController extends Controller
                     ],
                 ],
             ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    // 'logout' => ['post'],
-                ],
-            ],
         ];
     }
 
@@ -45,17 +36,14 @@ class UserController extends Controller
      */
     public function actionProfile($id) {
         
-        $model = $this->findModel($id);
-        $title = 'Profile | '. $model->username;
-
-        // echo "<pre>";
-        // print_r($model); exit;
-
-        Yii::$app->session->setFlash('info', 'Implementation Pending');
+        $user = User::find(['id' => $id])
+                        ->asArray()
+                        ->one();
+        $title = 'Profile | '. $user['username'];
         
         return $this->render('profile', [
             'title' => $title,
-            'model' => $model,
+            'user' => $user,
         ]);
     }
 
@@ -65,8 +53,8 @@ class UserController extends Controller
 	 * @return User|null
 	 * @throws NotFoundHttpException
 	 */
-    protected function findModel($id)
-    {
+    protected function findModel($id) {
+
         if (($model = User::findOne($id)) !== null) {
             return $model;
         }
