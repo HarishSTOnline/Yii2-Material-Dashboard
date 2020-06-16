@@ -25,7 +25,7 @@ use common\traits\HasTimestamp;
 class User extends ActiveRecord implements IdentityInterface
 {
 
-    // use HasTimestamp;
+    use HasTimestamp;
 
     const STATUS_DELETED = 0;
     const STATUS_INACTIVE = 9;
@@ -96,7 +96,10 @@ class User extends ActiveRecord implements IdentityInterface
             ['password', 'string', 'length' => [6, 16]],
             ['password_hash', 'safe'],
             ['status', 'default', 'value' => self::STATUS_INACTIVE],
-            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]]
+            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
+            ['created_at', 'datetime'],
+            ['updated_at', 'datetime'],
+            ['updated_at', 'required', 'on' => self::SCENARIO_UPDATE]
         ];
     }
 
