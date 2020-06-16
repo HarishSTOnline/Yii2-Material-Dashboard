@@ -48,18 +48,22 @@ class UserController extends Controller {
     }
 
     /**
-     * User Profile Update
+     * Update User Profile
      */
     public function actionUpdate($id) {
         
         $user = $this->findModel($id);
-        $title = 'Edit Profile | ' . $user->username;
+        $user->scenario = $user::SCENARIO_UPDATE;
 
-        Yii::$app->session->setFlash('info', '501 - Not yet implemented!');
+        if ($user->load(Yii::$app->request->post()) && $user->update()) {
+            Yii::$app->session->setFlash('success', 'User Profile Updated!');
+            return $this->redirect(['profile', 'id' => $user->id]);
+        }
+
+        Yii::$app->view->title = Yii::t('app', 'Update Profile | {userName}', ['userName'=> $user->username]);
         
         return $this->render('update', [
-            'title' => $title,
-            'user' => $user
+            'user' => $user,
         ]);
     }
 

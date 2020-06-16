@@ -21,17 +21,20 @@ use common\traits\HasTimestamp;
  * @property integer $status
  * @property integer $created_at
  * @property integer $updated_at
- * @property string $password write-only password
  */
 class User extends ActiveRecord implements IdentityInterface
 {
 
-    use HasTimestamp;
+    // use HasTimestamp;
 
     const STATUS_DELETED = 0;
     const STATUS_INACTIVE = 9;
     const STATUS_ACTIVE = 10;
 
+	const SCENARIO_CREATE = 'create';
+	const SCENARIO_UPDATE = 'update';
+
+    public $password = '';
 
     /**
      * {@inheritdoc}
@@ -44,12 +47,35 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * {@inheritdoc}
      */
-    public function behaviors()
+    public function attributeLabels()
     {
         return [
-            TimestampBehavior::className(),
+            'id' => 'User ID',
+            'username' => 'User Name',
+            'email' => 'Email',
+            'auth_key' => 'Auth Key',
+            'access_token' => 'Access Token',
+            'password_hash' => 'Password Hash',
+	        'password'   => 'Password',
+            'password_reset_token' => 'Password Reset Token',
+            'status' => 'Status',
+            'created_at' => 'Created At',
+            'updated_at' => 'Updated At',
+            'verification_token' => 'Verification Token',
         ];
     }
+
+    /**
+     * {@inheritdoc}
+     */
+	public function attributeHints() {
+		return [
+			'username'        => Yii::t('app', 'Enter your Username'),
+			'email'             => Yii::t('app', 'Enter your Email'),
+			'password'            => Yii::t('app', 'Pick your  Password'),
+			'status'            => Yii::t('app', 'Pick a status for this user'),
+		];
+	}
 
     /**
      * {@inheritdoc}
@@ -57,10 +83,61 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
+            
+            ['username', 'unique'],
+            ['username', 'required'],
+            ['email', 'email'],
+            ['email', 'unique'],
+            ['email', 'required'],
+            ['password', 'required', 'on' => self::SCENARIO_CREATE],
+            ['password', 'string', 'length' => [6, 16]],
+            ['password_hash', 'safe'],
             ['status', 'default', 'value' => self::STATUS_INACTIVE],
-            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
+            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]]
         ];
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function scenarios()
+    {
+        return [
+            self::SCENARIO_UPDATE => ['username', 'email', 'password']
+        ];
+    }
+
+    /**
+	 * @param bool $insert
+	 *
+	 * @return bool
+	 * @throws \yii\base\Exception
+	 */
+	public function beforeSave($insert)
+	{
+		if (!parent::beforeSave($insert)) {
+			return false;
+        }
+
+		if (!empty($this->password)) {
+            $this->setPassword($this->password);
+		}
+		return true;
+    }
+    
+    /**
+     * Get various statuses of User.
+     *
+     * @return array
+     */
+    public function getStatusesList()
+	{
+		return [
+			self::STATUS_DELETED => Yii::t('app', 'Deleted'),
+			self::STATUS_ACTIVE   => Yii::t('app', 'Active'),
+			self::STATUS_INACTIVE   => Yii::t('app', 'Inactive'),
+		];
+	}
 
     /**
      * {@inheritdoc}

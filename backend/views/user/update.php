@@ -1,73 +1,93 @@
 <?php
 
+use yii\bootstrap4\ActiveForm;
 use yii\helpers\Html;
-use yii\widgets\DetailView;
 
-$this->title = $title;
 ?>
+
+<?php $form = ActiveForm::begin([
+            'fieldConfig' => [
+                'template' => "{input} {error}",
+            ]
+        ]); ?>
+
 <div class="container-fluid">
-    <div class="card ">
-        <div class="card-header card-header-primary card-header-icon">
+
+    <div class="card">
+
+        <!-- Card Header -->
+        <div class="card-header card-header-info card-header-icon">
             <div class="card-icon">
                 <i class="material-icons">account_box</i>
             </div>
             <h4 class="card-title">
-                <?= $user->username ?>
+                <?= $user->isNewRecord ? Yii::t('app', 'Create User') : Yii::t('app', 'Update User') ?>
                 <div class="pull-right">
-                    <?= Html::a(Html::tag('b', 'keyboard_arrow_left', ['class' => 'material-icons']), ['/user/profile'], [
+                    <?= Html::a(Html::tag('b', 'keyboard_arrow_left', ['class' => 'material-icons']) , ['/user/profile', 'id' => $user->id], [
                         'class' => 'btn btn-xs btn-success btn-round btn-fab',
-                        'rel' => "tooltip",
+                        'rel'=>"tooltip",
                         'data' => [
                             'placement' => 'bottom',
                             'original-title' => 'Back'
                         ],
                     ]) ?>
-                    <?= Html::a(Html::tag('b', 'create', ['class' => 'material-icons']), ['update', 'id' => $user->id], [
-                        'class' => 'btn btn-xs btn-success btn-round btn-fab',
-                        'rel' => "tooltip",
-                        'data' => [
-                            'placement' => 'bottom',
-                            'original-title' => 'Edit User'
-                        ],
-                    ]) ?>
-                    <!-- <?= Html::a(Html::tag('b', 'delete', ['class' => 'material-icons']), ['delete', 'id' => $user->id], [
-                        'class' => 'btn btn-xs btn-danger btn-round btn-fab',
-                        'rel' => "tooltip",
-                        'data' => [
-                            'confirm' => \Yii::t('app', 'Are you sure you want to delete this item?'),
-                            'method' => 'post',
-                            'placement' => 'bottom',
-                            'original-title' => 'Delete User'
-                        ],
-                    ]) ?> -->
                 </div>
             </h4>
         </div>
+        <!-- Card Header End -->
+
+        <!-- Card Body -->
         <div class="card-body">
-            <?= DetailView::widget([
-                'model' => $user,
-                'attributes' => [
-                    'id',
-                    'username',
-                    // 'first_name',
-                    // 'last_name',
-                    // [
-                    //     'label' => 'Group Name',
-                    //     'value' => ($user->group_id) ? Html::a($user->group->name, ['/admin/groups/view', 'id' => $user->group_id]) : \Yii::t('app', 'No Group'),
-                    //     'format' => 'raw',
-                    // ],
-                    'email:email',
-                    [
-                        'label' => 'Status',
-                        'attribute' => 'status',
-                        'value'     => function ($user) {
-                            return \Yii::t('app', ucfirst(\yii\helpers\Html::encode($user->status)));
-                        },
-                    ],
-                    'created_at',
-                    'updated_at',
-                ],
-            ]) ?>
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <div class="form-group bmd-form-group">
+                        <label for="<?= Html::getInputId($user, 'username') ?>" class="bmd-label-floating"><?= Html::activeLabel($user,'username') ?></label>
+                        <?= $form->field($user, 'username')->textInput()->label(false) ?>
+                        <span class="bmd-help"><?= Html::activeHint($user,'username') ?></span>
+                    </div>
+
+                </div>
+                
+                <div class="col-md-6">
+
+                    <div class="form-group bmd-form-group">
+                        <label for="<?= Html::getInputId($user, 'email') ?>" class="bmd-label-floating">
+                            <?= Html::activeLabel($user,'email') ?>
+                        </label>
+                        <?= $form->field($user, 'email')->textInput()->label(false) ?>
+                        <span class="bmd-help"><?= Html::activeHint($user,'email') ?></span>
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <div class="form-group bmd-form-group">
+                        <label for="<?= Html::getInputId($user, 'password') ?>" class="bmd-label-floating">
+                            <?= Html::activeLabel($user,'password') ?>
+                        </label>
+                        <?= $form->field($user, 'password')->textInput()->label(false) ?>
+                        <span class="bmd-help"><?= Html::activeHint($user,'password') ?></span>
+                    </div>
+
+                </div>
+
+
+            </div>
+
         </div>
+        <!-- Card Body End -->
+
+        <!-- Card Footer -->
+        <div class="card-footer ml-auto mr-auto">
+            <?= Html::submitButton($user->isNewRecord ? \Yii::t('app', 'Create') : \Yii::t('app', 'Update'), ['class' => $user->isNewRecord ? 'btn btn-success' : 'btn btn-info']) ?>
+        </div>
+        <!-- Card Footer End -->
+
     </div>
+
 </div>
+<?php ActiveForm::end() ?>
