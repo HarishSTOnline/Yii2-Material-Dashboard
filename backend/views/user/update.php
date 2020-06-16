@@ -44,9 +44,9 @@ use yii\helpers\Html;
                 <div class="col-md-6">
 
                     <div class="form-group bmd-form-group">
-                        <label for="<?= Html::getInputId($user, 'username') ?>" class="bmd-label-floating"><?= Html::activeLabel($user,'username') ?></label>
-                        <?= $form->field($user, 'username')->textInput()->label(false) ?>
-                        <span class="bmd-help"><?= Html::activeHint($user,'username') ?></span>
+                        <label for="<?= Html::getInputId($user, 'name') ?>" class="bmd-label-floating"><?= Html::activeLabel($user,'name') ?></label>
+                        <?= $form->field($user, 'name')->textInput()->label(false) ?>
+                        <span class="bmd-help"><?= Html::activeHint($user,'name') ?></span>
                     </div>
 
                 </div>

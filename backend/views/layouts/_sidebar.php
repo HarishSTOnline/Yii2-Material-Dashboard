@@ -2,6 +2,8 @@
 
 use yii\helpers\Url;
 
+$currentUser = Yii::$app->user->identity;
+
 ?>
 
 <div class="sidebar" data-color="purple" data-background-color="white" data-image="<?= Yii::getAlias('@web/img/sidebar-1.jpg'); ?>">
@@ -22,23 +24,24 @@ use yii\helpers\Url;
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#yii2Example" aria-expanded="false">
-                <i class="material-icons">account_box</i>
-                <p>Users
+                <!-- <i class="material-icons">account_box</i> -->
+                <i><img style="width:25px" src="<?= Yii::getAlias('@web/img/faces/avatar.jpg'); ?>"></i>
+                <p><?= $currentUser->name ?>
                     <b class="caret"></b>
                 </p>
                 </a>
                 <div class="collapse" id="yii2Example">
                 <ul class="nav">
                     <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <span class="sidebar-mini"> UM </span>
-                        <span class="sidebar-normal"> User Management </span>
+                    <a class="nav-link" href="<?= Url::to(['/user/profile', 'id' => $currentUser->id]) ?>">
+                        <span class="sidebar-mini"> UP </span>
+                        <span class="sidebar-normal"> User Profile </span>
                     </a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <span class="sidebar-mini"> UP </span>
-                        <span class="sidebar-normal"> User Profile </span>
+                    <a class="nav-link" href="<?= Url::to(['/user/update', 'id' => $currentUser->id]) ?>">
+                        <span class="sidebar-mini"> PU </span>
+                        <span class="sidebar-normal"> Profile Update </span>
                     </a>
                     </li>
                 </ul>

@@ -52,6 +52,7 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             'id' => 'User ID',
             'username' => 'User Name',
+            'name' => 'Name',
             'email' => 'Email',
             'auth_key' => 'Auth Key',
             'access_token' => 'Access Token',
@@ -71,6 +72,7 @@ class User extends ActiveRecord implements IdentityInterface
 	public function attributeHints() {
 		return [
 			'username'        => Yii::t('app', 'Enter your Username'),
+			'name'        => Yii::t('app', 'Enter your Name'),
 			'email'             => Yii::t('app', 'Enter your Email'),
 			'password'            => Yii::t('app', 'Pick your  Password'),
 			'status'            => Yii::t('app', 'Pick a status for this user'),
@@ -86,6 +88,7 @@ class User extends ActiveRecord implements IdentityInterface
             
             ['username', 'unique'],
             ['username', 'required'],
+            ['name', 'safe'],
             ['email', 'email'],
             ['email', 'unique'],
             ['email', 'required'],
@@ -103,7 +106,7 @@ class User extends ActiveRecord implements IdentityInterface
     public function scenarios()
     {
         return [
-            self::SCENARIO_UPDATE => ['username', 'email', 'password']
+            self::SCENARIO_UPDATE => ['name', 'email', 'password']
         ];
     }
 

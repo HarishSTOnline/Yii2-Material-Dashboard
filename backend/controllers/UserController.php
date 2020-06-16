@@ -39,7 +39,7 @@ class UserController extends Controller {
         $user = User::find(['id' => $id])
                         ->asArray()
                         ->one();
-        $title = 'Profile | '. $user['username'];
+        $title = 'Profile | '. $user['name'];
         
         return $this->render('profile', [
             'title' => $title,
@@ -60,7 +60,7 @@ class UserController extends Controller {
             return $this->redirect(['profile', 'id' => $user->id]);
         }
 
-        Yii::$app->view->title = Yii::t('app', 'Update Profile | {userName}', ['userName'=> $user->username]);
+        Yii::$app->view->title = Yii::t('app', 'Update Profile | {name}', ['name'=> $user->name]);
         
         return $this->render('update', [
             'user' => $user,
