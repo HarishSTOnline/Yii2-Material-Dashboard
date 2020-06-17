@@ -23,30 +23,54 @@ $currentUser = Yii::$app->user->identity;
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" href="#yii2Example" aria-expanded="false">
+                <a class="nav-link" data-toggle="collapse" href="#you" aria-expanded="false">
                 <!-- <i class="material-icons">account_box</i> -->
                 <i><img style="width:25px" src="<?= Yii::getAlias('@web/img/faces/avatar.jpg'); ?>"></i>
                 <p><?= $currentUser->name ?>
                     <b class="caret"></b>
                 </p>
                 </a>
-                <div class="collapse" id="yii2Example">
+                <div class="collapse" id="you">
                 <ul class="nav">
                     <li class="nav-item">
-                    <a class="nav-link" href="<?= Url::to(['/user/profile', 'id' => $currentUser->id]) ?>">
-                        <span class="sidebar-mini"> UP </span>
-                        <span class="sidebar-normal"> User Profile </span>
-                    </a>
+                        <a class="nav-link" href="<?= Url::to(['/user/profile', 'id' => $currentUser->id]) ?>">
+                            <span class="sidebar-mini"> UP </span>
+                            <span class="sidebar-normal"> User Profile </span>
+                        </a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="<?= Url::to(['/user/update', 'id' => $currentUser->id]) ?>">
-                        <span class="sidebar-mini"> PU </span>
-                        <span class="sidebar-normal"> Profile Update </span>
-                    </a>
+                        <a class="nav-link" href="<?= Url::to(['/user/update', 'id' => $currentUser->id]) ?>">
+                            <span class="sidebar-mini"> PU </span>
+                            <span class="sidebar-normal"> Profile Update </span>
+                        </a>
                     </li>
                 </ul>
                 </div>
-          </li>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#customer" aria-expanded="false">
+                <i class="material-icons">account_box</i>
+                <p>Customer
+                    <b class="caret"></b>
+                </p>
+                </a>
+                <div class="collapse" id="customer">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= Url::to(['/customer/index']) ?>">
+                            <span class="sidebar-mini"> LC </span>
+                            <span class="sidebar-normal"> List Customers </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= Url::to(['/customer/create']) ?>">
+                            <span class="sidebar-mini"> CC </span>
+                            <span class="sidebar-normal"> Create Customer </span>
+                        </a>
+                    </li>
+                </ul>
+                </div>
+            </li>
             <!-- <li class="nav-item ">
                 <a class="nav-link" href="./user.html">
                     <i class="material-icons">person</i>
