@@ -24,7 +24,7 @@ use yii\helpers\Html;
                 <?= $user->isNewRecord ? Yii::t('app', 'Create User') : Yii::t('app', 'Update User') ?>
                 <div class="pull-right">
                     <?= Html::a(Html::tag('b', 'keyboard_arrow_left', ['class' => 'material-icons']) , ['/user/profile', 'id' => $user->id], [
-                        'class' => 'btn btn-xs btn-success btn-round btn-fab',
+                        'class' => 'btn btn-xs btn-info btn-round btn-fab',
                         'rel'=>"tooltip",
                         'data' => [
                             'placement' => 'bottom',
