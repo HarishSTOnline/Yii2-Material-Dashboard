@@ -19,7 +19,7 @@ class AppAsset extends AssetBundle
         'css/material-dashboard.css',
     ];
     public $js = [
-        'js/core/jquery.min.js',
+        // 'js/core/jquery.min.js',
         'js/core/popper.min.js',
         'js/core/bootstrap-material-design.min.js',
         'js/plugins/perfect-scrollbar.jquery.min.js', // Core JS Files
@@ -41,10 +41,11 @@ class AppAsset extends AssetBundle
         'js/plugins/bootstrap-notify.js', // Notifications Plugin
         // 'font-awesome/js/all.js', // Font-Awesome JS
         'js/material-dashboard.js?v=2.1.2', // Control Center for Material Dashboard: parallax effects, scripts for the example pages etc
-        'js/plugin.custom.js',
+        'js/plugin.custom.js', // Plugin for changing color and image of sidebar
+        'js/custom.js', // Custom Javascript for dev purposes
     ];
     public $depends = [
-        // 'yii\web\YiiAsset',
+        'yii\web\YiiAsset',
         // 'yii\bootstrap\BootstrapAsset',
     ];
 }
