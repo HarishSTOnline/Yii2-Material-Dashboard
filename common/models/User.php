@@ -32,6 +32,7 @@ class User extends ActiveRecord implements IdentityInterface
 
 	const SCENARIO_CREATE = 'create';
 	const SCENARIO_UPDATE = 'update';
+	const SCENARIO_PASSWORD_RESET = 'reset';
 
     public $password = '';
 
@@ -98,7 +99,6 @@ class User extends ActiveRecord implements IdentityInterface
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
             ['created_at', 'datetime'],
             ['updated_at', 'datetime'],
-            ['updated_at', 'required', 'on' => self::SCENARIO_UPDATE]
         ];
     }
 
@@ -108,7 +108,9 @@ class User extends ActiveRecord implements IdentityInterface
     public function scenarios()
     {
         return [
-            self::SCENARIO_UPDATE => ['name', 'email', 'password']
+            self::SCENARIO_CREATE => ['username', 'email', 'password'],
+            self::SCENARIO_UPDATE => ['name', 'email', 'password'],
+            self::SCENARIO_PASSWORD_RESET => ['email'],
         ];
     }
 
